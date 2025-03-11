@@ -6,18 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    tools:openDrawer="start">
+    tools:openDrawer="start" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/backgroundLight">
 
+        <!-- thanh toolbar -->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:background="?attr/colorPrimary"
+            android:background="@color/backgroundPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,11 +38,11 @@
             app:srcCompat="@drawable/icon_menu" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/txtAppName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="76dp"
-            android:text="@string/reading_book"
+            android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
@@ -50,22 +52,70 @@
 
         <ImageView
             android:id="@+id/imgSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="34dp"
+            android:layout_height="28dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
             app:layout_constraintEnd_toEndOf="@+id/toolbar"
             app:layout_constraintTop_toTopOf="@+id/toolbar"
             app:srcCompat="@drawable/icon_search" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recySubject"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="96dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <!-- Search View -->
+        <RelativeLayout
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundPrimary"
+            android:padding="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+            <!-- SearchView chiếm gần hết chiều ngang, chừa chỗ cho icon cancel -->
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/imgCancel"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="8dp"
+                android:background="@color/white"
+                android:iconifiedByDefault="false"
+                android:queryHint="Tìm kiếm sách..." />
+
+            <!-- Icon Cancel bên phải -->
+            <ImageView
+                android:id="@+id/imgCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/searchView"
+                android:layout_alignBottom="@id/searchView"
+                android:padding="8dp"
+                android:src="@drawable/icon_cancel" />
+
+            <!-- RecyclerView nằm dưới SearchView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerSuggestions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/searchView"
+                android:background="@color/white"
+                android:elevation="4dp"
+                android:visibility="gone" />
+        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
