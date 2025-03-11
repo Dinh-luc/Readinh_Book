@@ -185,16 +185,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Khi chọn gợi ý -> chuyển sang SearchResultActivity
-//        suggestionAdapter.setOnItemClickListener(new subjectAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(subjectModel item) {
-//                Intent intent = new Intent(MainActivity.this, SearchResultActivity.class);
-//                intent.putExtra("query", item.getSubjectName()); // Truyền tên sách sang
-//                startActivity(intent);
-//            }
-//        });
-
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
